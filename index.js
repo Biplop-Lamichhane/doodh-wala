@@ -22,7 +22,7 @@ app.post("/adduser", (req, res) => {
 		console.log(req.body);
 		db.insert(newdaya);
 	} else {
-		res.send("invalid");
+		res.send("haina hepum na");
 	}
 });
 app.get("/", (req, res) => {
