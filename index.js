@@ -2,17 +2,15 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 var Datastore = require("nedb");
 var db = new Datastore("data.db");
 app.use(bodyParser.json());
 db.loadDatabase();
 app.post("/adduser", (req, res) => {
-	if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-		res.send("kya he");
-	}
+	const payload = { username: req.body.name };
 
-	if (req.body.name) {
+	if ((payload["username"] !== undefined || "") && payload.username) {
 		let name = req.body.name;
 		let newdaya = [
 			{
@@ -37,16 +35,31 @@ app.get("/", (req, res) => {
 });
 
 app.get("/up", (req, res) => {
-const date = new Date()
-console.log(date)
-	db.update({ _id: "hPwjJSR5QUekOp3v" }, { $push: { main: { date , morning:10 , evening:10} } });
+	const date = new Date();
+	console.log(date);
+	db.update(
+		{ _id: "hPwjJSR5QUekOp3v" },
+		{ $push: { main: { date, morning: 10, evening: 10 } } }
+	);
 
 	res.send("snet");
 });
 
+app.get("/:find", (req, res) => {
+	const uid = req.params.find;
+	db.findOne({ _id: uid }, (err, doc) => {
+		res.send(doc);
+console.log( doc)
+
+
+});
+});
+
 app.get("/all", (req, res) => {
-	db.find({}, (err, d) => {
-		res.send(d);
+	db.find({}, (err, document) => {
+		console.log(document);
+
+		res.send(document);
 	});
 });
 

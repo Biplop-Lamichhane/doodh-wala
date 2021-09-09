@@ -1,7 +1,1 @@
-[                                                                 {                                                                 "name": "prabin",                                               "main": [ 
-      { "date": "2021-08-27T11:20:38.446Z", "morning": 10, "evening": 10 }
-    ],
-    "_id": "hPwjJSR5QUekOp3v"
-  },
-  { "name": "Bilau", "main": [], "_id": "l53cjKk8kv3wsQcy" }
-]
+{"name":"Prabin","main":[],"_id":"vsyrR9dv7IrkowWp"}
